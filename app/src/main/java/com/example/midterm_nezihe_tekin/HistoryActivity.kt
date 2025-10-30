@@ -12,15 +12,19 @@ class HistoryActivity : AppCompatActivity() {
 
     private lateinit var listViewHistory: ListView
     private lateinit var btnClearHistory: Button
+    private lateinit var btnBack: Button
     private lateinit var historyAdapter: ArrayAdapter<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
+        // Bind views
         listViewHistory = findViewById(R.id.listViewHistory)
         btnClearHistory = findViewById(R.id.btnClearHistory)
+        btnBack = findViewById(R.id.btnBack)
 
+        // Adapter for history numbers (e.g., [3, 5, 8])
         historyAdapter = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
@@ -28,7 +32,7 @@ class HistoryActivity : AppCompatActivity() {
         )
         listViewHistory.adapter = historyAdapter
 
-        // Clear All with confirmation dialog
+        // Clear All with confirmation dialog (BONUS)
         btnClearHistory.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Clear All")
@@ -42,11 +46,7 @@ class HistoryActivity : AppCompatActivity() {
                 .show()
         }
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressedDispatcher.onBackPressed()
-        return true
+        // Back button to return to MainActivity
+        btnBack.setOnClickListener { finish() }
     }
 }
