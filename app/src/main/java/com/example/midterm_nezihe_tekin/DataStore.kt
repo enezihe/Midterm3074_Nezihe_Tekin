@@ -1,4 +1,9 @@
 package com.example.midterm_nezihe_tekin
 
-class DataStore {
+object DataStore {
+
+    val currentTableList = ArrayList<String>()
+
+
+    val historyNumbers = ArrayList<Int>()
 }
